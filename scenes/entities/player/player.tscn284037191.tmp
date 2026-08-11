@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dtxufroreulwe"]
+
+[ext_resource type="Script" uid="uid://co7g4n1fsn7rg" path="res://scenes/entities/player/player_controller.gd" id="1_635qg"]
+[ext_resource type="PackedScene" uid="uid://csf66fgrbv8ef" path="res://scenes/entities/player/camera_controller.tscn" id="3_58kc7"]
+[ext_resource type="PackedScene" uid="uid://cu0jjc67senf7" path="res://scenes/entities/player/Characters/erika.tscn" id="3_nh4ur"]
+[ext_resource type="Script" uid="uid://2qefswqn5jn8" path="res://states/state_machine.gd" id="4_nh4ur"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p7gav"]
+height = 1.9370117
+
+[node name="Player" type="CharacterBody3D" unique_id=2020998403]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_635qg")
+
+[node name="Erika" parent="." unique_id=1943358974 instance=ExtResource("3_nh4ur")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1455692005]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9638151, 0)
+shape = SubResource("CapsuleShape3D_p7gav")
+
+[node name="CameraController" parent="." unique_id=89015395 instance=ExtResource("3_58kc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6501569, 0)
+
+[node name="StateMachine" type="Node" parent="." unique_id=31820646]
+script = ExtResource("4_nh4ur")
+is_log_enabled = true
+
+[node name="Timer" type="Timer" parent="." unique_id=597021597]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
