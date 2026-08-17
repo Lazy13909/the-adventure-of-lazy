@@ -15,6 +15,18 @@ script = ExtResource("1_635qg")
 [node name="Erika" parent="." unique_id=1943358974 instance=ExtResource("3_nh4ur")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
+[node name="Skeleton3D" parent="Erika" index="0" unique_id=1308389428]
+bones/2/rotation = Quaternion(0.10689617, 0.043597467, -0.044303622, 0.9923254)
+bones/3/rotation = Quaternion(0.033001274, 0.049245995, -0.038014162, 0.9975173)
+bones/4/rotation = Quaternion(-0.052688055, 0.07646124, 0.09994115, 0.9906511)
+bones/5/rotation = Quaternion(-0.08692825, 0.21890384, -0.062511474, 0.9698542)
+bones/30/rotation = Quaternion(0.18755174, -0.0065781726, 0.0010597082, 0.9822322)
+bones/50/rotation = Quaternion(0.4068532, -1.682438e-05, -0.010483925, 0.9134334)
+bones/51/rotation = Quaternion(0.45140606, -0.0009927092, -0.012308828, 0.8922333)
+bones/54/rotation = Quaternion(0.38759026, -0.0010857105, -0.008441147, 0.92179245)
+bones/60/rotation = Quaternion(0.34227222, 0.027712792, -0.050714795, 0.93782187)
+bones/65/rotation = Quaternion(0.32961074, -0.015322252, 0.025965514, 0.94363546)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1455692005]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9638151, 0)
 shape = SubResource("CapsuleShape3D_p7gav")
@@ -25,3 +37,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6501569, 0)
 [node name="StateMachine" type="Node" parent="." unique_id=31820646]
 script = ExtResource("4_nh4ur")
 is_log_enabled = true
+
+[editable path="Erika"]

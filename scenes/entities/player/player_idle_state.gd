@@ -9,9 +9,14 @@ func get_state_name() -> String:
 func process(_delta: float) -> void:
     if Input.is_action_just_pressed("jump"):
         state_machine.transition(PlayerJumpState.state_name)
+        return
     animation_player.play("player/idle")
 
 func physics_process(delta: float) -> void:
+    if player.is_crouching:
+        state_machine.transition(PlayerCrouchIdleState.state_name)
+        return
+
     if player.movement_input != Vector2.ZERO:
         state_machine.transition(PlayerWalkingState.state_name)
         return

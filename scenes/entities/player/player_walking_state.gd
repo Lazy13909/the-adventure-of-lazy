@@ -14,6 +14,10 @@ func process(_delta: float) -> void:
     animation_player.play("player/walking")
 
 func physics_process(delta: float) -> void:
+    if player.is_crouching:
+        state_machine.transition(PlayerCrouchWalkState.state_name)
+        return
+
     if player.movement_input != Vector2.ZERO:
         player.vel_2d += player.movement_input * walking_speed * delta
         player.vel_2d = player.vel_2d.limit_length(walking_speed)

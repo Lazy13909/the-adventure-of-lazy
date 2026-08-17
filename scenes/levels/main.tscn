@@ -46,7 +46,7 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=2020998403 instance=ExtResource("1_72ix8")]
-transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -19.323069, 5.836378, 0)
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -5.0644093, 5.836378, 0)
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=1534427675]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.6023483)
@@ -80,7 +80,7 @@ mesh = SubResource("BoxMesh_72ix8")
 shape = SubResource("BoxShape3D_afj1d")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="." unique_id=1195701305]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.49694, 5.178556, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2382803, 5.178556, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D4" unique_id=577840905]
 mesh = SubResource("BoxMesh_rqkgj")

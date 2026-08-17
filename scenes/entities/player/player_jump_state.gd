@@ -13,7 +13,7 @@ func get_state_name() -> String:
 func enter() -> void:
 	is_jumping = false
 	has_launched = false
-
+	
 	if player.movement_input != Vector2.ZERO:
 		animation_player.play("player/jump_running")
 		launch()
@@ -27,7 +27,12 @@ func process(_delta: float) -> void:
 
 func physics_process(_delta) -> void:
 	if is_jumping and player.is_on_floor() and player.velocity.y <= 0.0:
-		if player.movement_input != Vector2.ZERO:
+		if player.is_crouching:
+			if player.movement_input != Vector2.ZERO:
+				state_machine.transition(PlayerCrouchWalkState.state_name)
+			else:
+				state_machine.transition(PlayerCrouchIdleState.state_name)
+		elif player.movement_input != Vector2.ZERO:
 			state_machine.transition(PlayerWalkingState.state_name)
 		else:
 			state_machine.transition(PlayerIdleState.state_name)

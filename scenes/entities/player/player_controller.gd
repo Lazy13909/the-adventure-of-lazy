@@ -17,9 +17,15 @@ var jump_time_to_descent: float = 0.3
 @onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
+var is_crouching: bool
+
 func _ready() -> void:
-	var states: Array[State] = [PlayerIdleState.new(self), PlayerWalkingState.new(self), PlayerJumpState.new(self)]
+	var states: Array[State] = [PlayerIdleState.new(self), PlayerWalkingState.new(self), PlayerJumpState.new(self), PlayerCrouchIdleState.new(self), PlayerCrouchWalkState.new(self)]
 	state_machine.start_machine(states)
+
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_pressed("crouch"):
+		is_crouching = !is_crouching
 
 func _physics_process(_delta: float) -> void:
 	movement_input = Input.get_vector("move_left", "move_right", "move_forward", "move_backward").rotated(-camera_controller.global_rotation.y)
