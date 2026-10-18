@@ -2,7 +2,7 @@ class_name PlayerWalkingState extends PlayerState
 
 static var state_name = "PlayerWalkingState"
 
-static var walking_speed: float = 4.0
+static var walking_speed: float = 2.5
 
 func get_state_name() -> String:
     return state_name
@@ -18,6 +18,10 @@ func physics_process(delta: float) -> void:
         state_machine.transition(PlayerCrouchWalkState.state_name)
         return
 
+    if Input.is_action_pressed("run") and player.movement_input != Vector2.ZERO:
+        state_machine.transition(PlayerRunningState.state_name)
+        return
+        
     if player.movement_input != Vector2.ZERO:
         player.vel_2d += player.movement_input * walking_speed * delta
         player.vel_2d = player.vel_2d.limit_length(walking_speed)

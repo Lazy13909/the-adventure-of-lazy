@@ -24,7 +24,7 @@ const STANDING_HEIGHT: float = 1.8
 const CROUCH_HEIGHT: float = 1.2
 
 func _ready() -> void:
-	var states: Array[State] = [PlayerIdleState.new(self), PlayerWalkingState.new(self), PlayerJumpState.new(self), PlayerCrouchIdleState.new(self), PlayerCrouchWalkState.new(self)]
+	var states: Array[State] = [PlayerIdleState.new(self), PlayerWalkingState.new(self), PlayerJumpState.new(self), PlayerCrouchIdleState.new(self), PlayerCrouchWalkState.new(self), PlayerRunningState.new(self)]
 	state_machine.start_machine(states)
 
 func _input(_event: InputEvent) -> void:
