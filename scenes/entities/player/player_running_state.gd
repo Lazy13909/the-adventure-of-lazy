@@ -22,6 +22,12 @@ func physics_process(delta: float) -> void:
 		state_machine.transition(PlayerWalkingState.state_name)
 		return
 	
+	if player.stamina <= 0.0:
+		state_machine.transition(PlayerWalkingState.state_name)
+		return
+
+	player.drain_stamina(player.run_drain_per_second * delta)
+	
 	player.vel_2d += player.movement_input * running_speed * delta
 	player.vel_2d = player.vel_2d.limit_length(running_speed)
 	player.velocity.x = player.vel_2d.x

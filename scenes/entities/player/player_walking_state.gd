@@ -18,10 +18,10 @@ func physics_process(delta: float) -> void:
         state_machine.transition(PlayerCrouchWalkState.state_name)
         return
 
-    if Input.is_action_pressed("run") and player.movement_input != Vector2.ZERO:
+    if Input.is_action_pressed("run") and player.movement_input != Vector2.ZERO and player.stamina >= player.min_stamina_to_run:
         state_machine.transition(PlayerRunningState.state_name)
         return
-        
+
     if player.movement_input != Vector2.ZERO:
         player.vel_2d += player.movement_input * walking_speed * delta
         player.vel_2d = player.vel_2d.limit_length(walking_speed)

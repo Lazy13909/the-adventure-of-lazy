@@ -23,7 +23,17 @@ var is_crouching: bool
 const STANDING_HEIGHT: float = 1.8
 const CROUCH_HEIGHT: float = 1.2
 
+@export_group("Stamina")
+@export var max_stamina: float = 100.0
+@export var run_drain_per_second: float = 17.5
+@export var regen_standing_per_second: float = 20.0
+@export var regen_walking_per_second: float = 8.3
+@export var min_stamina_to_run: float = 25.0
+
+var stamina: float
+
 func _ready() -> void:
+	stamina = max_stamina
 	var states: Array[State] = [PlayerIdleState.new(self), PlayerWalkingState.new(self), PlayerJumpState.new(self), PlayerCrouchIdleState.new(self), PlayerCrouchWalkState.new(self), PlayerRunningState.new(self)]
 	state_machine.start_machine(states)
 
@@ -31,13 +41,15 @@ func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("crouch"):
 		is_crouching = !is_crouching
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	movement_input = Input.get_vector("move_left", "move_right", "move_forward", "move_backward").rotated(-camera_controller.global_rotation.y)
 	vel_2d = Vector2(velocity.x, velocity.z)
-	
+
+	update_stamina(delta)
+
 	if not is_on_floor():
 		var gravity_to_use: float = jump_gravity if velocity.y > 0.0 else fall_gravity
-		velocity.y -= gravity_to_use * _delta
+		velocity.y -= gravity_to_use * delta
 
 	move_and_slide()
 
@@ -55,4 +67,13 @@ func can_stand_up() -> bool:
 
 	var result := space_state.intersect_shape(query, 1)
 	return result.is_empty()
-	
+
+func drain_stamina(amount: float) -> void:
+	stamina = maxf(stamina - amount, 0.0)
+
+func update_stamina(delta: float) -> void:
+	if state_machine.current_state is PlayerRunningState:
+		return
+
+	var regen: float = regen_standing_per_second if movement_input == Vector2.ZERO else regen_walking_per_second
+	stamina = minf(stamina + regen * delta, max_stamina)
