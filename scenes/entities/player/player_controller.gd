@@ -1,12 +1,24 @@
 class_name PlayerController extends CharacterBody3D
 
-@onready var animation_player = $Erika/AnimationPlayer
+signal health_changed(current: float, maximum: float)
+signal stamina_changed(current: float, maximum: float)
+
+@export var max_health: float = 100.0
+
+var health: float = 100.0:
+	set(value):
+		var new_value: float = clampf(value, 0.0, max_health)
+		if new_value == health:
+			return
+		health = new_value
+		health_changed.emit(health, max_health)
+
 @onready var state_machine = $StateMachine
+@onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var skin = $Erika
+@onready var animation_player = $Erika/AnimationPlayer
 
 @onready var camera_controller: Camera3D = $CameraController/Camera3D
-
-@onready var collision_shape: CollisionShape3D = $CollisionShape3D
 
 var movement_input: Vector2 = Vector2.ZERO
 var vel_2d: Vector2 = Vector2.ZERO
