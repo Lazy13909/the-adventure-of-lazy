@@ -42,7 +42,13 @@ const CROUCH_HEIGHT: float = 1.2
 @export var regen_walking_per_second: float = 8.3
 @export var min_stamina_to_run: float = 25.0
 
-var stamina: float
+var stamina: float = 100.0:
+	set(value):
+		var new_value: float = clampf(value, 0.0, max_stamina)
+		if new_value == stamina:
+			return
+		stamina = new_value
+		stamina_changed.emit(stamina, max_stamina)
 
 func _ready() -> void:
 	stamina = max_stamina
@@ -81,11 +87,11 @@ func can_stand_up() -> bool:
 	return result.is_empty()
 
 func drain_stamina(amount: float) -> void:
-	stamina = maxf(stamina - amount, 0.0)
+	stamina -= amount
 
 func update_stamina(delta: float) -> void:
 	if state_machine.current_state is PlayerRunningState:
 		return
 
 	var regen: float = regen_standing_per_second if movement_input == Vector2.ZERO else regen_walking_per_second
-	stamina = minf(stamina + regen * delta, max_stamina)
+	stamina += regen * delta
