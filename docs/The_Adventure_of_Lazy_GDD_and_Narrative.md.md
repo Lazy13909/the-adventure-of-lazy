@@ -94,16 +94,16 @@ Each room is a self-contained loop of exploration and problem-solving that gates
 
 | **Stat**    | **Starting Value** | **Drops When**                                                                                                                                     | **Restores When**                                                                                                                     |
 | ----------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| **Health**  | 100                | Fear damage: small random hits at random intervals (see 3.4); Screamer encounter (−25)                                                             | Eating food (+20); solving a puzzle                                                                                                   |
+| **Health**  | 100                |Fear damage: small random hits (2–5 Health) every 30–60 seconds (see 3.4); Screamer encounter (−25)                                                 | Eating food (+20); solving a puzzle (+10)
 | ---         | ---                | ---                                                                                                                                                | ---                                                                                                                                   |
 | **Stamina** | 100                | Continuous running: empties the bar in 4–7 seconds (15%–25% of the bar per second);<br><br>Each jump: 20% of the bar;<br><br>Pushing heavy objects | Whenever the player is not running. Standing still: full refill in about 5 seconds. Walking: slower, full refill in about 12 seconds. |
 | ---         | ---                | ---                                                                                                                                                | ---                                                                                                                                   |
 
 ### 3.4 Fear Damage
-- Rule: Fear damage starts when the player enters the Kitchen and continues until the end of the game. There is no fear damage in the Entry Hall. While it is active, the player loses a small, random amount of Health at random intervals (for example, −10 after 10 seconds, then −3 after 17 seconds). It represents the fear and pressure of the house.
+- Rule: Fear damage starts when the player enters the Kitchen and continues until the end of the game. There is no fear damage in the Entry Hall. While it is active, the player loses a small, random amount of Health at random intervals (for example, for example, −4 after 35 seconds, then −2 after 52 seconds). It represents the fear and pressure of the house.
 - Pause: Fear damage stops while the journal or the pages viewer is open. The game is paused, but the audio keeps playing.
 - Feedback: Each time Health drops, red blotches appear across the whole screen and fade out, in the style of The Evil Within and Amnesia. The Screamer’s permanent red blotches (Section 7.1) use the same visual language.
--Tuning: The size and timing ranges are set during playtesting and are not final. Falling damage no longer exists.
+-Tuning: Tuning: Starting values are 2–5 Health per hit, one hit every 30–60 seconds. They are balanced for about 20 minutes of fear time with 3 food portions (+20 each), and will be adjusted during playtesting. Falling damage no longer exists.
 
 ## 4\. World & Level Design
 

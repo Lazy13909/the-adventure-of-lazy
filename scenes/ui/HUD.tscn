@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b8q1u7ykr6t50" path="res://scenes/ui/HUD.gd" id="1_kw0id"]
 
-[node name="CanvasLayer" type="CanvasLayer" unique_id=1990551773]
+[node name="HUD" type="CanvasLayer" unique_id=1990551773]
 script = ExtResource("1_kw0id")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=440377958]

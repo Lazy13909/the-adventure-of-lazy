@@ -54,7 +54,8 @@ func _ready() -> void:
 	stamina = max_stamina
 	var states: Array[State] = [PlayerIdleState.new(self), PlayerWalkingState.new(self), PlayerJumpState.new(self), PlayerCrouchIdleState.new(self), PlayerCrouchWalkState.new(self), PlayerRunningState.new(self)]
 	state_machine.start_machine(states)
-
+	$FearDamage.start_fear_damage()
+	
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("crouch"):
 		is_crouching = !is_crouching

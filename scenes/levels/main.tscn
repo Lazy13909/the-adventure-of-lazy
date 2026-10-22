@@ -103,5 +103,5 @@ mesh = SubResource("BoxMesh_afj1d")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5" unique_id=34411018]
 shape = SubResource("BoxShape3D_rqkgj")
 
-[node name="CanvasLayer" parent="." unique_id=1990551773 node_paths=PackedStringArray("player") instance=ExtResource("2_2vj2h")]
+[node name="HUD" parent="." unique_id=1990551773 node_paths=PackedStringArray("player") instance=ExtResource("2_2vj2h")]
 player = NodePath("../Player")
