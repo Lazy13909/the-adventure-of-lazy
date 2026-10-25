@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dtxufroreulwe" path="res://player/player.tscn" id="1_wdj6m"]
 [ext_resource type="PackedScene" uid="uid://c0qk463qowre4" path="res://ui/HUD/HUD.tscn" id="2_l8qe7"]
+[ext_resource type="Script" uid="uid://dwckg22ntsvbt" path="res://levels/kitchen/kitchen_fear_trigger.gd" id="3_l8qe7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_72ix8"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -21,10 +22,7 @@ size = Vector3(0.3, 3, 2)
 [sub_resource type="BoxMesh" id="BoxMesh_0n2ll"]
 size = Vector3(12, 6, 0.2)
 
-[sub_resource type="BoxMesh" id="BoxMesh_71frx"]
-size = Vector3(12, 0.2, 6)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_72ix8"]
+[sub_resource type="BoxMesh" id="BoxMesh_8l1sn"]
 size = Vector3(12, 0.2, 6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_71frx"]
@@ -46,40 +44,43 @@ transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -3.4
 
 [node name="DividerWallLeft" type="CSGMesh3D" parent="Level" unique_id=861669021]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6066923, -2)
+use_collision = true
 mesh = SubResource("BoxMesh_buxgw")
 
 [node name="DividerWallRight" type="CSGMesh3D" parent="Level" unique_id=407521015]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.607, 2)
+use_collision = true
 mesh = SubResource("BoxMesh_buxgw")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="Level" unique_id=429805708]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.9229312)
+use_collision = true
 mesh = SubResource("BoxMesh_0n2ll")
 
 [node name="CSGMesh3D2" type="CSGMesh3D" parent="Level" unique_id=619742054]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.9650888)
+use_collision = true
 mesh = SubResource("BoxMesh_0n2ll")
 
 [node name="CSGMesh3D3" type="CSGMesh3D" parent="Level" unique_id=962203924]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.9161253, 0, 2.9650888)
+use_collision = true
 mesh = SubResource("BoxMesh_0n2ll")
 
 [node name="CSGMesh3D4" type="CSGMesh3D" parent="Level" unique_id=526042376]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.9161234, 0, 2.9650888)
+use_collision = true
 mesh = SubResource("BoxMesh_0n2ll")
 
-[node name="floor" type="StaticBody3D" parent="." unique_id=2016323559]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="floor" unique_id=259400613]
-mesh = SubResource("BoxMesh_71frx")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="floor" unique_id=525779786]
-shape = SubResource("BoxShape3D_72ix8")
+[node name="floor2" type="CSGMesh3D" parent="Level" unique_id=1871127581]
+use_collision = true
+mesh = SubResource("BoxMesh_8l1sn")
 
 [node name="HUD" parent="." unique_id=1990551773 node_paths=PackedStringArray("player") instance=ExtResource("2_l8qe7")]
 player = NodePath("../Player")
 
 [node name="KitchenFearTrigger" type="Area3D" parent="." unique_id=2123488002]
+script = ExtResource("3_l8qe7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KitchenFearTrigger" unique_id=57973384]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21072084, 1.6034684, 0)

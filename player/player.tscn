@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://csf66fgrbv8ef" path="res://player/camera/camera_controller.tscn" id="3_58kc7"]
 [ext_resource type="PackedScene" uid="uid://cu0jjc67senf7" path="res://player/Character/erika.tscn" id="3_nh4ur"]
 [ext_resource type="Script" uid="uid://2qefswqn5jn8" path="res://player/state_machine/state_machine.gd" id="4_nh4ur"]
+[ext_resource type="Script" uid="uid://bv8b5gehe1whu" path="res://player/fear_damage/fear_damage.gd" id="5_qjkh3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p7gav"]
 radius = 0.4
@@ -193,6 +194,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6501569, 0)
 
 [node name="StateMachine" type="Node" parent="." unique_id=31820646]
 script = ExtResource("4_nh4ur")
-is_log_enabled = true
+
+[node name="FearDamage" type="Node3D" parent="." unique_id=2026580019 node_paths=PackedStringArray("player")]
+script = ExtResource("5_qjkh3")
+player = NodePath("..")
+min_interval = 2.0
+max_interval = 4.0
+
+[node name="Timer" type="Timer" parent="FearDamage" unique_id=1454146362]
 
 [editable path="Erika"]
