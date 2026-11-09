@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cxv60e4ag8yvo"]
+
+[ext_resource type="Shader" uid="uid://7rbysfu3hl4m" path="res://ui/damage_overlay/damage_overlay.gdshader" id="1_5ljb6"]
+[ext_resource type="Script" uid="uid://c5cadcjbr1xp0" path="res://ui/damage_overlay/damage_overlay.gd" id="1_pbvqd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mw8wy"]
+shader = ExtResource("1_5ljb6")
+shader_parameter/blotch_color = Color(0.6, 0, 0, 1)
+shader_parameter/flash_strength = 0.0
+shader_parameter/permanent_strength = 0.0
+shader_parameter/noise_scale = 3.0
+
+[node name="DamageOverlay" type="CanvasLayer" unique_id=1580963699]
+layer = 0
+script = ExtResource("1_pbvqd")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1038549803]
+material = SubResource("ShaderMaterial_mw8wy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
