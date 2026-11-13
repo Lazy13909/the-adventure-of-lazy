@@ -40,7 +40,7 @@ func physics_process(_delta) -> void:
 			state_machine.transition(PlayerIdleState.state_name)
 
 func launch() -> void:
-	player.velocity.y = -(player.jump_velocity)
+	player.velocity.y = player.jump_velocity
 	has_launched = true
 
 func delayed_launch() -> void:

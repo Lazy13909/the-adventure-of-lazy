@@ -27,13 +27,14 @@ var jump_height: float = 0.7
 var jump_time_to_peak: float = 0.4
 var jump_time_to_descent: float = 0.3
 
-@onready var jump_velocity: float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
-@onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
-@onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
+@onready var jump_velocity: float = (2.0 * jump_height) / jump_time_to_peak
+@onready var jump_gravity: float = (2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
+@onready var fall_gravity: float = (2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)
 
 var is_crouching: bool
 const STANDING_HEIGHT: float = 1.8
 const CROUCH_HEIGHT: float = 1.2
+const SKIN_TURN_SPEED: float = 6.0
 
 @export_group("Stamina")
 @export var max_stamina: float = 100.0
@@ -116,3 +117,20 @@ func start_regen_delay(seconds: float) -> void:
 func can_jump() -> bool:
 	return jump_zone_count > 0 and stamina >= jump_stamina_cost
 	
+func apply_horizontal_velocity() -> void:
+	velocity.x = vel_2d.x
+	velocity.z = vel_2d.y
+
+func accelerate(max_speed: float, delta: float) -> void:
+	vel_2d += movement_input * max_speed * delta
+	vel_2d = vel_2d.limit_length(max_speed)
+	apply_horizontal_velocity()
+
+func brake(stop_speed: float, delta: float) -> void:
+	vel_2d = vel_2d.move_toward(Vector2.ZERO, stop_speed * delta)
+	apply_horizontal_velocity()
+
+func rotate_skin_toward_input(delta: float) -> void:
+	var target_angle: float = -(movement_input.angle() + PI / 2)
+	skin.rotation.y = rotate_toward(skin.rotation.y, target_angle, SKIN_TURN_SPEED * delta)
+
