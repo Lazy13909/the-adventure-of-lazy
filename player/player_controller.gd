@@ -134,3 +134,8 @@ func rotate_skin_toward_input(delta: float) -> void:
 	var target_angle: float = -(movement_input.angle() + PI / 2)
 	skin.rotation.y = rotate_toward(skin.rotation.y, target_angle, SKIN_TURN_SPEED * delta)
 
+func set_crouch_height(crouching: bool) -> void:
+	var shape: CapsuleShape3D = collision_shape.shape
+	var target_height: float = CROUCH_HEIGHT if crouching else STANDING_HEIGHT
+	shape.height = target_height
+	collision_shape.position.y = target_height / 2
