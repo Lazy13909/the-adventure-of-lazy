@@ -11,6 +11,7 @@ func get_state_name() -> String:
 	return state_name
 
 func enter() -> void:
+	player.drain_stamina(player.jump_stamina_cost)
 	is_jumping = false
 	has_launched = false
 	
@@ -27,6 +28,7 @@ func process(_delta: float) -> void:
 
 func physics_process(_delta) -> void:
 	if is_jumping and player.is_on_floor() and player.velocity.y <= 0.0:
+		player.start_regen_delay(player.regen_delay_after_jump)
 		if player.is_crouching:
 			if player.movement_input != Vector2.ZERO:
 				state_machine.transition(PlayerCrouchWalkState.state_name)

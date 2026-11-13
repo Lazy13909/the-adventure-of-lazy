@@ -38,8 +38,9 @@ const CROUCH_HEIGHT: float = 1.2
 @export_group("Stamina")
 @export var max_stamina: float = 100.0
 @export var run_drain_per_second: float = 17.5
-@export var regen_standing_per_second: float = 20.0
-@export var regen_walking_per_second: float = 8.3
+@export var regen_standing_per_second: float = 10.0
+@export var regen_walking_per_second: float = 5.0
+@export var regen_delay_after_jump: float = 1.0
 @export var min_stamina_to_run: float = 25.0
 
 var stamina: float = 100.0:
@@ -49,6 +50,13 @@ var stamina: float = 100.0:
 			return
 		stamina = new_value
 		stamina_changed.emit(stamina, max_stamina)
+
+var _regen_delay_left: float = 0.0
+
+@export_group("Jump")
+@export var jump_stamina_cost: float = 20.0
+
+var jump_zone_count: int = 0
 
 func _ready() -> void:
 	stamina = max_stamina
@@ -92,6 +100,19 @@ func drain_stamina(amount: float) -> void:
 func update_stamina(delta: float) -> void:
 	if state_machine.current_state is PlayerRunningState:
 		return
+	if state_machine.current_state is PlayerJumpState:
+		return
+
+	if _regen_delay_left > 0.0:
+		_regen_delay_left -= delta
+		return
 
 	var regen: float = regen_standing_per_second if movement_input == Vector2.ZERO else regen_walking_per_second
 	stamina += regen * delta
+
+func start_regen_delay(seconds: float) -> void:
+	_regen_delay_left = seconds
+
+func can_jump() -> bool:
+	return jump_zone_count > 0 and stamina >= jump_stamina_cost
+	

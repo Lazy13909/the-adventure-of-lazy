@@ -7,7 +7,7 @@ func get_state_name() -> String:
     return state_name
 
 func process(_delta: float) -> void:
-    if Input.is_action_just_pressed("jump"):
+    if Input.is_action_just_pressed("jump") and player.can_jump():
         state_machine.transition(PlayerJumpState.state_name)
         return
     animation_player.play("player/idle")

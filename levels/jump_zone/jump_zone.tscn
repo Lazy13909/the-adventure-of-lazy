@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://pf56cwttk1eq"]
+
+[ext_resource type="Script" uid="uid://c1xbys624cpgc" path="res://levels/jump_zone/jump_zone.gd" id="1_5dx52"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8l1sn"]
+size = Vector3(2, 2.5, 3)
+
+[node name="JumpZone" type="Area3D" unique_id=1208992225]
+script = ExtResource("1_5dx52")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1174359710]
+shape = SubResource("BoxShape3D_8l1sn")

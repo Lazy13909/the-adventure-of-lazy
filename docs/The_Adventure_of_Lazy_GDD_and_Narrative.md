@@ -96,7 +96,7 @@ Each room is a self-contained loop of exploration and problem-solving that gates
 | ----------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | **Health**  | 100                |Fear damage: small random hits (2–5 Health) every 30–60 seconds (see 3.4); Screamer encounter (−25)                                                 | Eating food (+20); solving a puzzle (+10)
 | ---         | ---                | ---                                                                                                                                                | ---                                                                                                                                   |
-| **Stamina** | 100                | Continuous running: empties the bar in 4–7 seconds (15%–25% of the bar per second);<br><br>Each jump: 20% of the bar;<br><br>Pushing heavy objects | Whenever the player is not running. Standing still: full refill in about 5 seconds. Walking: slower, full refill in about 12 seconds. |
+| **Stamina** | 100                | Continuous running: empties the bar in 4–7 seconds (15%–25% of the bar per second); each jump: 20% of the bar (a jump is possible only if at least 20% is available); pushing heavy objects | Whenever the player is not running or jumping. Regeneration starts 1 second after landing from a jump. Standing still: full refill in about 10 seconds. Walking: slower, full refill in about 20 seconds. |
 | ---         | ---                | ---                                                                                                                                                | ---                                                                                                                                   |
 
 ### 3.4 Fear Damage
@@ -295,6 +295,8 @@ If the player's Health reaches 0, the game restarts from the last checkpoint —
 | ---             | ---                                                                                           |
 | 18-19           | Bug fixing, export build, publish to itch.io                                                  |
 | ---             | ---                                                                                           |
+
+Working plan: the detailed milestone plan (M0-M10) is in docs/roadmap.md. The table above is the original week estimate. If they differ, the roadmap wins.
 
 ## PART II — NARRATIVE DOCUMENT
 

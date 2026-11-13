@@ -13,7 +13,7 @@ func exit() -> void:
 	set_crouch_height(false)
 	
 func process(_delta: float) -> void:
-	if Input.is_action_just_pressed("jump") and player.can_stand_up():
+	if Input.is_action_just_pressed("jump") and player.can_jump() and player.can_stand_up():
 		state_machine.transition(PlayerJumpState.state_name)
 		return
 	animation_player.play("player/crouch_idle")
