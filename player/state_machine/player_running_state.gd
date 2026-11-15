@@ -13,7 +13,7 @@ func physics_process(delta: float) -> void:
 	if player.is_crouching:
 		state_machine.transition(PlayerCrouchWalkState.state_name)
 		return
-		
+
 	if player.movement_input == Vector2.ZERO:
 		state_machine.transition(PlayerIdleState.state_name)
 		return
@@ -21,17 +21,11 @@ func physics_process(delta: float) -> void:
 	if not Input.is_action_pressed("run"):
 		state_machine.transition(PlayerWalkingState.state_name)
 		return
-	
+
 	if player.stamina <= 0.0:
 		state_machine.transition(PlayerWalkingState.state_name)
 		return
 
 	player.drain_stamina(player.run_drain_per_second * delta)
-	
-	player.vel_2d += player.movement_input * running_speed * delta
-	player.vel_2d = player.vel_2d.limit_length(running_speed)
-	player.velocity.x = player.vel_2d.x
-	player.velocity.z = player.vel_2d.y
-
-	var target_angle: float = -(player.movement_input.angle() + PI / 2)
-	player.skin.rotation.y = rotate_toward(player.skin.rotation.y, target_angle, 6.0 * delta)
+	player.accelerate(running_speed, delta)
+	player.rotate_skin_toward_input(delta)

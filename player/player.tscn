@@ -195,7 +195,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6501569, 0)
 [node name="StateMachine" type="Node" parent="." unique_id=31820646]
 script = ExtResource("4_nh4ur")
 
-[node name="FearDamage" type="Node3D" parent="." unique_id=2026580019 node_paths=PackedStringArray("player")]
+[node name="FearDamage" type="Node" parent="." unique_id=1474215198 node_paths=PackedStringArray("player")]
 script = ExtResource("5_qjkh3")
 player = NodePath("..")
 

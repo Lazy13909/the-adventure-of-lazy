@@ -18,7 +18,7 @@ var health: float = 100.0:
 @onready var skin = $Erika
 @onready var animation_player = $Erika/AnimationPlayer
 
-@onready var camera_controller: Camera3D = $CameraController/Camera3D
+@onready var camera: Camera3D = $CameraController/Camera3D
 
 var movement_input: Vector2 = Vector2.ZERO
 var vel_2d: Vector2 = Vector2.ZERO
@@ -69,7 +69,7 @@ func _input(_event: InputEvent) -> void:
 		is_crouching = !is_crouching
 
 func _physics_process(delta: float) -> void:
-	movement_input = Input.get_vector("move_left", "move_right", "move_forward", "move_backward").rotated(-camera_controller.global_rotation.y)
+	movement_input = Input.get_vector("move_left", "move_right", "move_forward", "move_backward").rotated(-camera.global_rotation.y)
 	vel_2d = Vector2(velocity.x, velocity.z)
 
 	update_stamina(delta)
@@ -139,3 +139,6 @@ func set_crouch_height(crouching: bool) -> void:
 	var target_height: float = CROUCH_HEIGHT if crouching else STANDING_HEIGHT
 	shape.height = target_height
 	collision_shape.position.y = target_height / 2
+
+func wants_to_jump() -> bool:
+	return Input.is_action_just_pressed("jump") and can_jump()
