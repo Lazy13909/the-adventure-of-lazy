@@ -71,7 +71,7 @@ Each room is a self-contained loop of exploration and problem-solving that gates
 - **Camera:** Third-person, mouse-controlled.
 - **Movement:** WASD to walk; **Shift** to sprint (consumes Stamina).
 - **Crouch:** **Ctrl** toggles crouching. Crouching lowers the view so the player can look under furniture, such as the bed, even though the camera is third-person.
-- **Jump:** **Space** works only inside specially marked jump zones, where the player has to jump to get past an obstacle. Free jumping is disabled. Each jump costs Stamina.
+- **Jump:** **Space** works only inside specially marked jump zones, where the player has to jump to get past an obstacle. Free jumping is disabled. Each jump costs 20% of Stamina, and a jump is possible only if at least 20% is available.
 
 ### 3.2 Actions
 

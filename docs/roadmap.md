@@ -58,16 +58,16 @@ Size is a rough guess at about 4 hours per day: S = 2-3 days, M = about 1 week, 
 - FearDamage (2-5 Health, one hit every 30-60 s) and the Kitchen trigger.
 - DamageOverlay (red blotches that fade; permanent-scar dial ready for the Screamer).
 
-**Remaining tasks**
-- `[ ]` **M1.1 Jump zones.** Space works only inside a marked zone (Area3D). Each jump costs 20% Stamina. Free jumping is disabled.
-- `[ ]` **M1.2 Crouch camera.** While crouching, the camera can look under furniture (for example, under a bed).
-- `[ ]` **M1.3 Cleanup.** Remove the temporary test line in `player_controller.gd`. Set the FearDamage Inspector values back to 30/60 and 2/5. Delete the no-op line in `player_walking_state.gd`.
+**Tasks**
+- `[x]` **M1.1 Jump zones.** Done 13.11.2026.
+- `[ ]` **M1.2 Crouch camera.** While crouching, the camera can look under furniture.
+- `[x]` **M1.3 Cleanup.** Done 15.11.2026 (helpers, tabs, folder names).
 
 **Done when**
-- Space does nothing outside a zone. Inside a zone it makes a jump and costs 20% Stamina.
+- Space does nothing outside a zone. Inside a zone it makes a jump and costs 20% Stamina. (done)
 - In a test room, a crouching player can see under a test bed.
-- No fear damage in the test hall before the Kitchen trigger.
-- No errors in the Output panel.
+- No fear damage in the test hall before the Kitchen trigger. (done)
+- No errors in the Output panel. (done)
 
 **Risks:** third-person camera clipping into furniture while crouching.
 **Concepts:** Area3D signals (`body_entered`, `body_exited`), guarding a state transition with a flag, camera height and collision.
