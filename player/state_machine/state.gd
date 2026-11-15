@@ -1,17 +1,17 @@
 class_name State extends Node
 
 func enter():
-    pass
+	pass
 
 func exit():
-    pass
+	pass
 
 func process(_delta: float):
-    pass
+	pass
 
 func physics_process(_delta: float):
-    pass
+	pass
 
 func get_state_name() -> String:
-    push_error("Method get_state_name() must be defined.")
-    return ""
+	push_error("Method get_state_name() must be defined.")
+	return ""

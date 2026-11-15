@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp3ojhe8xwlac"
-path.s3tc="res://.godot/imported/Erika_0.png-5bcb3d775d6a640da17e0237ed20aecb.s3tc.ctex"
+uid="uid://khct4d5b2mgk"
+path.s3tc="res://.godot/imported/Erika_0.png-37978849bd6108cb627e37589a538018.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "03e6ac7add5b56489c1e1531775fd9bd"
-}
 
 [deps]
 
-source_file="res://player/Character/Erika_0.png"
-dest_files=["res://.godot/imported/Erika_0.png-5bcb3d775d6a640da17e0237ed20aecb.s3tc.ctex"]
+source_file="res://player/character/Erika_0.png"
+dest_files=["res://.godot/imported/Erika_0.png-37978849bd6108cb627e37589a538018.s3tc.ctex"]
 
 [params]
 

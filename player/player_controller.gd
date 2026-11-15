@@ -57,6 +57,7 @@ var _regen_delay_left: float = 0.0
 @export_group("Jump")
 @export var jump_stamina_cost: float = 20.0
 
+
 var jump_zone_count: int = 0
 
 func _ready() -> void:
@@ -131,7 +132,7 @@ func brake(stop_speed: float, delta: float) -> void:
 	apply_horizontal_velocity()
 
 func rotate_skin_toward_input(delta: float) -> void:
-	var target_angle: float = -(movement_input.angle() + PI / 2)
+	var target_angle: float = - (movement_input.angle() + PI / 2)
 	skin.rotation.y = rotate_toward(skin.rotation.y, target_angle, SKIN_TURN_SPEED * delta)
 
 func set_crouch_height(crouching: bool) -> void:

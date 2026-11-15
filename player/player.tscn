@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://co7g4n1fsn7rg" path="res://player/player_controller.gd" id="1_635qg"]
 [ext_resource type="PackedScene" uid="uid://csf66fgrbv8ef" path="res://player/camera/camera_controller.tscn" id="3_58kc7"]
-[ext_resource type="PackedScene" uid="uid://cu0jjc67senf7" path="res://player/Character/erika.tscn" id="3_nh4ur"]
+[ext_resource type="PackedScene" uid="uid://cu0jjc67senf7" path="res://player/character/erika.tscn" id="3_nh4ur"]
 [ext_resource type="Script" uid="uid://2qefswqn5jn8" path="res://player/state_machine/state_machine.gd" id="4_nh4ur"]
 [ext_resource type="Script" uid="uid://bv8b5gehe1whu" path="res://player/fear_damage/fear_damage.gd" id="5_qjkh3"]
 
@@ -17,7 +17,7 @@ script = ExtResource("1_635qg")
 [node name="Erika" parent="." unique_id=1943358974 instance=ExtResource("3_nh4ur")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Erika" index="0" unique_id=269549327]
+[node name="Skeleton3D" parent="Erika" index="0" unique_id=735508750]
 bones/1/position = Vector3(0, 0.10181561, 3.0172718e-08)
 bones/1/rotation = Quaternion(-0.042321462, 0, 0, 0.999104)
 bones/1/scale = Vector3(1, 0.9999997, 0.9999997)

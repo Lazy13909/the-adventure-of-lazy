@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bojmclt3fdxd5"
-path="res://.godot/imported/Erika.fbx-d9150f3d523f77569842b65f04289237.scn"
+uid="uid://d37qjkpa1n0ut"
+path="res://.godot/imported/Erika.fbx-04d16f04e348a3b5221147b0882a4432.scn"
 
 [deps]
 
-source_file="res://player/Character/Erika.fbx"
-dest_files=["res://.godot/imported/Erika.fbx-d9150f3d523f77569842b65f04289237.scn"]
+source_file="res://player/character/Erika.fbx"
+dest_files=["res://.godot/imported/Erika.fbx-04d16f04e348a3b5221147b0882a4432.scn"]
 
 [params]
 

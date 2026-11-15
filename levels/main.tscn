@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://ci6l622avskpp"]
 
 [ext_resource type="PackedScene" uid="uid://dtxufroreulwe" path="res://player/player.tscn" id="1_wdj6m"]
-[ext_resource type="PackedScene" uid="uid://c0qk463qowre4" path="res://ui/HUD/HUD.tscn" id="2_l8qe7"]
+[ext_resource type="PackedScene" uid="uid://c0qk463qowre4" path="res://ui/hud/hud.tscn" id="2_l8qe7"]
 [ext_resource type="Script" uid="uid://dwckg22ntsvbt" path="res://levels/kitchen/kitchen_fear_trigger.gd" id="3_l8qe7"]
-[ext_resource type="PackedScene" uid="uid://cxv60e4ag8yvo" path="res://ui/damage_overlay/DamageOverlay.tscn" id="3_m1504"]
+[ext_resource type="PackedScene" uid="uid://cxv60e4ag8yvo" path="res://ui/damage_overlay/damage_overlay.tscn" id="3_m1504"]
 [ext_resource type="PackedScene" uid="uid://pf56cwttk1eq" path="res://levels/jump_zone/jump_zone.tscn" id="5_ifaiv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_72ix8"]

@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://cu0jjc67senf7"]
 
-[ext_resource type="PackedScene" uid="uid://bojmclt3fdxd5" path="res://player/Character/Erika.fbx" id="1_ajj27"]
-[ext_resource type="Animation" uid="uid://c3gx4s3c3kflf" path="res://player/Character/crouch_idle.anim" id="2_l27w7"]
-[ext_resource type="Animation" uid="uid://yc0wk1xg0x03" path="res://player/Character/crouch_walking.anim" id="3_b2koa"]
-[ext_resource type="Animation" uid="uid://dmkwvd2epo1g4" path="res://player/Character/idle.anim" id="4_5xxgs"]
-[ext_resource type="Animation" uid="uid://du82d8to5dmfv" path="res://player/Character/jump.anim" id="5_0ewp3"]
-[ext_resource type="Animation" uid="uid://bfo5gaq1lkwfk" path="res://player/Character/jump_running.anim" id="6_mo5po"]
-[ext_resource type="Animation" uid="uid://cmi0nx03towki" path="res://player/Character/running.anim" id="7_7tv2q"]
-[ext_resource type="Animation" uid="uid://bicvg4rhy7nba" path="res://player/Character/walking.anim" id="8_r04h0"]
+[ext_resource type="PackedScene" uid="uid://bojmclt3fdxd5" path="res://player/character/Erika.fbx" id="1_ajj27"]
+[ext_resource type="Animation" uid="uid://c3gx4s3c3kflf" path="res://player/character/crouch_idle.anim" id="2_l27w7"]
+[ext_resource type="Animation" uid="uid://yc0wk1xg0x03" path="res://player/character/crouch_walking.anim" id="3_b2koa"]
+[ext_resource type="Animation" uid="uid://dmkwvd2epo1g4" path="res://player/character/idle.anim" id="4_5xxgs"]
+[ext_resource type="Animation" uid="uid://du82d8to5dmfv" path="res://player/character/jump.anim" id="5_0ewp3"]
+[ext_resource type="Animation" uid="uid://bfo5gaq1lkwfk" path="res://player/character/jump_running.anim" id="6_mo5po"]
+[ext_resource type="Animation" uid="uid://cmi0nx03towki" path="res://player/character/running.anim" id="7_7tv2q"]
+[ext_resource type="Animation" uid="uid://bicvg4rhy7nba" path="res://player/character/walking.anim" id="8_r04h0"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ud5n"]
 _data = {
