@@ -25,7 +25,27 @@ size = Vector3(0.3, 3, 2)
 size = Vector3(12, 6, 0.2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_8l1sn"]
-size = Vector3(12, 0.2, 6)
+size = Vector3(30, 0.2, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_buxgw"]
+albedo_color = Color(0.7898877, 0.28661284, 0.22386622, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rqkgj"]
+material = SubResource("StandardMaterial3D_buxgw")
+size = Vector3(2, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ifaiv"]
+size = Vector3(2, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_71frx"]
+albedo_color = Color(0.78362215, 0.11524207, 0.14217314, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_afj1d"]
+material = SubResource("StandardMaterial3D_71frx")
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0n2ll"]
+size = Vector3(0.2, 0.2, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_71frx"]
 size = Vector3(0.11566162, 3.036255, 1.9863281)
@@ -69,14 +89,33 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.9
 use_collision = true
 mesh = SubResource("BoxMesh_0n2ll")
 
+[node name="floor2" type="CSGMesh3D" parent="Level" unique_id=1871127581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.98255, 0, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_8l1sn")
+
 [node name="CSGMesh3D4" type="CSGMesh3D" parent="Level" unique_id=526042376]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.9161234, 0, 2.9650888)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.7418957, 0, 2.9650888)
 use_collision = true
 mesh = SubResource("BoxMesh_0n2ll")
 
-[node name="floor2" type="CSGMesh3D" parent="Level" unique_id=1871127581]
-use_collision = true
-mesh = SubResource("BoxMesh_8l1sn")
+[node name="bed" type="StaticBody3D" parent="Level" unique_id=1917756219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7733473, 0.5, 1.6005216)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/bed" unique_id=347905034]
+mesh = SubResource("BoxMesh_rqkgj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/bed" unique_id=66445822]
+shape = SubResource("BoxShape3D_ifaiv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level" unique_id=1025466368]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2725408, 0.20867908, 1.9394081)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/StaticBody3D" unique_id=486219362]
+mesh = SubResource("BoxMesh_afj1d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/StaticBody3D" unique_id=542005263]
+shape = SubResource("BoxShape3D_0n2ll")
 
 [node name="HUD" parent="." unique_id=1990551773 node_paths=PackedStringArray("player") instance=ExtResource("2_l8qe7")]
 player = NodePath("../Player")

@@ -3,6 +3,8 @@ class_name PlayerController extends CharacterBody3D
 signal health_changed(current: float, maximum: float)
 signal stamina_changed(current: float, maximum: float)
 
+signal crouch_changed(crouching: bool)
+
 @export var max_health: float = 100.0
 
 var health: float = 100.0:
@@ -31,7 +33,12 @@ var jump_time_to_descent: float = 0.3
 @onready var jump_gravity: float = (2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)
 @onready var fall_gravity: float = (2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)
 
-var is_crouching: bool
+var is_crouching: bool:
+	set(value):
+		if value == is_crouching:
+			return
+		is_crouching = value
+		crouch_changed.emit(is_crouching)
 const STANDING_HEIGHT: float = 1.8
 const CROUCH_HEIGHT: float = 1.2
 const SKIN_TURN_SPEED: float = 6.0
@@ -56,7 +63,6 @@ var _regen_delay_left: float = 0.0
 
 @export_group("Jump")
 @export var jump_stamina_cost: float = 20.0
-
 
 var jump_zone_count: int = 0
 

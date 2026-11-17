@@ -189,8 +189,9 @@ bones/66/rotation = Quaternion(5.421011e-20, 3.134022e-20, -4.3368087e-19, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.92487466, 0)
 shape = SubResource("CapsuleShape3D_p7gav")
 
-[node name="CameraController" parent="." unique_id=89015395 instance=ExtResource("3_58kc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6501569, 0)
+[node name="CameraController" parent="." unique_id=89015395 node_paths=PackedStringArray("player") instance=ExtResource("3_58kc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
+player = NodePath("..")
 
 [node name="StateMachine" type="Node" parent="." unique_id=31820646]
 script = ExtResource("4_nh4ur")
