@@ -1,5 +1,5 @@
 # Game Dev Progress
-Updated: 15.11.2026
+Updated: 17.11.2026
 
 ## Setup
 
@@ -17,8 +17,8 @@ Updated: 15.11.2026
 | # | Milestone | Status |
 |---|---|---|
 | M0 | Foundation | done |
-| M1 | Player systems | in progress (only M1.2 left) |
-| M2 | Interaction, notes, journal | todo |
+| M1 | Player systems | done (17.11.2026) |
+| M2 | Interaction, notes, journal | todo (next) |
 | M3 | Food and radial menu | todo |
 | M4 | Doors, keys, torches | todo |
 | M5 | Entry Hall and Kitchen | todo |
@@ -30,7 +30,7 @@ Updated: 15.11.2026
 
 ## Current milestone
 
-M1: Player systems. Remaining: M1.2 crouch camera.
+M2: Interaction, notes, journal. Not started.
 
 ## Done
 
@@ -44,24 +44,27 @@ M1: Player systems. Remaining: M1.2 crouch camera.
   Each jump costs 20%. Free jump is off.
 - Stamina regen changes (13.11.2026): standing 10/s, walking 5/s,
   no regen while running or jumping, 1 s delay after landing.
-- M1.3 refactor (15.11.2026), batches A, B, C:
-  - Jump numbers are all positive (no double negative).
-  - Helpers in PlayerController: apply_horizontal_velocity, accelerate, brake,
-    rotate_skin_toward_input, set_crouch_height, wants_to_jump, can_jump.
-  - States use the helpers. No-op line removed.
-  - camera_controller variable renamed to camera.
-  - Tabs everywhere, .editorconfig updated.
-  - FearDamage node type changed to Node.
-  - Folders renamed: player/character/, ui/hud/ (hud.gd, hud.tscn),
-    damage_overlay.tscn.
+- M1.3 refactor (15.11.2026): helpers in PlayerController, states use them,
+  tabs everywhere, folders renamed.
+- M1.2 crouch camera (17.11.2026, tested, no errors):
+  - PlayerController has signal crouch_changed(crouching) and a setter on
+    is_crouching (emit only on change).
+  - camera_controller.gd listens to the signal. On crouch, a Tween (0.3 s,
+    SINE, EASE_OUT) moves position:y of the pivot from the standing height
+    (saved in _ready, now 1.65) to crouch_pivot_height (0.5).
+  - max_limit_x goes from 20 to crouch_max_limit_x (25) while crouching.
+    Standing up with the camera too low turns it back inside the limit.
+  - Exports (group Crouch): player, crouch_pivot_height, crouch_max_limit_x,
+    crouch_transition_time. The player field is set in player.tscn.
+  - SpringArm3D: sphere radius 0.1, spring length 1.0.
+  - Test bed in the greybox scene: camera can see under it.
 
 ## In progress
 
-- Nothing started yet. Next is M1.2.
+- Nothing. Next is M2.1.
 
 ## Known bugs
 
-- Crouch camera cannot look under the bed -> M1.2.
 - StateMachine is_log_enabled is on (turn off in M10).
 - stop_fear_damage() not used yet (needed in M7 ending and M8 lose condition).
 - Cannot jump while running (must release Shift first). Fine for now.
@@ -74,6 +77,10 @@ M1: Player systems. Remaining: M1.2 crouch camera.
   white 3-5 s, camera turns 180 degrees, fade to black within 10 s.
 - Fear damage: starts in the Kitchen, none in the Entry Hall, pauses with journal/pages viewer.
 - Health/Stamina: signals + setters (clamp in setter, emit only on change).
+  Same pattern for is_crouching.
+- Camera: SpringArm3D pivot. Camera goes lower when rotation.x is positive
+  (max_limit_x). Crouch lowers the pivot, not the spring length.
+- If a room is small, spring length 1.0 may need tuning in M5.
 - HUD in Main scene, listens to player signals.
 - DamageOverlay: CanvasLayer in Main (Layer lower than HUD), ColorRect (Full Rect,
   Mouse Filter Ignore) with ShaderMaterial. @export player, @export flash_duration (1.2 s).
@@ -106,7 +113,8 @@ M1: Player systems. Remaining: M1.2 crouch camera.
 - Learned: shader basics, hash/value_noise/fbm (idea level), mix/lerp, smoothstep,
   clamp, signals, @onready, $Node, Tween, remap, material vs shader,
   Area3D body_entered/body_exited, counter vs flag, helper functions,
-  limit_length (speed cap).
+  limit_length (speed cap), pivot and sin() for camera height, connecting
+  a signal in code, @export node reference.
 - Practice: change one shader number at a time and predict the result;
   debug a shader by showing a variable as gray.
   Open check question: what does Vector2(1, 0).angle() return?
@@ -115,5 +123,5 @@ M1: Player systems. Remaining: M1.2 crouch camera.
 
 ## Next task
 
-M1.2: crouch camera. While crouching, the player can look under furniture
-(for example, under a bed). Test with a test bed in the greybox level.
+M2.1: interaction detection and the "E" prompt. Compare RayCast3D and
+Area3D in front of the player, then choose one.

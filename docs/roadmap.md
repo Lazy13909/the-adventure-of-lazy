@@ -1,6 +1,6 @@
 # Roadmap: The Adventure of Lazy
 
-**Updated:** 11.11.2026
+**Updated:** 17.11.2026
 **Based on:** GDD 1.3 (Section 14, original week plan) and all decisions up to 10.11.2026.
 **Rule:** this file is the working plan. GDD Section 14 is only the first estimate. If they differ, this file wins.
 
@@ -22,7 +22,7 @@ Size is a rough guess at about 4 hours per day: S = 2-3 days, M = about 1 week, 
 | # | Milestone | Size | Status |
 |---|---|---|---|
 | M0 | Foundation | S | [x] |
-| M1 | Player systems | M | [~] |
+| M1 | Player systems | M | [x] |
 | M2 | Interaction, notes, journal | M | [ ] |
 | M3 | Food and radial menu | M | [ ] |
 | M4 | Doors, keys, torches | M | [ ] |
@@ -47,7 +47,7 @@ Size is a rough guess at about 4 hours per day: S = 2-3 days, M = about 1 week, 
 
 ---
 
-## M1: Player systems `[~]`
+## M1: Player systems `[x]`
 
 **Goal:** the player moves, gets tired, and gets scared, as in GDD Section 3.
 **Depends on:** M0.
@@ -60,12 +60,12 @@ Size is a rough guess at about 4 hours per day: S = 2-3 days, M = about 1 week, 
 
 **Tasks**
 - `[x]` **M1.1 Jump zones.** Done 13.11.2026.
-- `[ ]` **M1.2 Crouch camera.** While crouching, the camera can look under furniture.
+- `[x]` **M1.2 Crouch camera.** Done 17.11.2026. While crouching, the camera pivot goes lower and the camera can look under furniture.
 - `[x]` **M1.3 Cleanup.** Done 15.11.2026 (helpers, tabs, folder names).
 
 **Done when**
 - Space does nothing outside a zone. Inside a zone it makes a jump and costs 20% Stamina. (done)
-- In a test room, a crouching player can see under a test bed.
+- In a test room, a crouching player can see under a test bed. (done)
 - No fear damage in the test hall before the Kitchen trigger. (done)
 - No errors in the Output panel. (done)
 
