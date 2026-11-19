@@ -30,7 +30,7 @@ Updated: 17.11.2026
 
 ## Current milestone
 
-M2: Interaction, notes, journal. Not started.
+M1: only M1.4 left (stamina delay after running). Then M2.
 
 ## Done
 
@@ -93,20 +93,21 @@ M2: Interaction, notes, journal. Not started.
 - Bookshelf push (M6) is a scripted push, not physics.
 - Folder rule: put a file next to the thing it belongs to.
 - Jump zones: JumpZone lives in levels/jump_zone/ (not interactables/, because
-  the player does not press E). Counter, not true/false, so overlapping zones work.
+  the player does not press E). Counter, not true/false, so overlapping zones work. one in the Entry Hall (tutorial), one in the Kitchen (fallen chair). Obstacles at most 0.5 m high.
 - interactables/ is for objects with E. First files come in M2.
 - Rename files only in the Godot FileSystem dock. On Windows, rename
   Name -> name_tmp -> name (case-only rename trick).
+- Puzzle healing +10 Health: confirmed.
+- Cutscene limit: 15 s; the ending may use up to 20 s.
+- Note #4 ends: "The door is the only way out. Don't wait. If you stay still, it never leaves you."
+- After the credits: end menu, Play again / Quit.
 
 ## Open questions
 
-- Where do jump zones appear in the level? (GDD 3.1 has no jump obstacle in 4.3.)
-- Puzzle healing +10 Health (GDD 3.3): confirm.
-- Cutscene limit: GDD 12 says 15 s, an old note said 5 s, the ending may be 15-20 s.
-- Note #4 wording ("The key is behind that door") vs no second key.
-- After the credits: quit or menu? Main/pause menu needed? (decide in M8)
-- Confirm the updated GDD text (Sections 3.1, 3.3, 3.4, 4.3, 8.2, 12) is pasted into the GDD.
-- Should the 1 s stamina delay also happen after running? (now: no)
+1. Main menu / pause menu: decide in M8.
+2. After the final door: does the Screamer still follow the player? (sequel hook)
+3. Which puzzles give +10 Health? Decide in M5.
+4. Confirm the changes above are pasted into the GDD.
 
 ## Concepts learned / need practice
 
@@ -123,5 +124,4 @@ M2: Interaction, notes, journal. Not started.
 
 ## Next task
 
-M2.1: interaction detection and the "E" prompt. Compare RayCast3D and
-Area3D in front of the player, then choose one.
+M1.4: stamina delay after running. Then M2.1.

@@ -92,18 +92,16 @@ Each room is a self-contained loop of exploration and problem-solving that gates
 
 ### 3.3 Player Stats
 
-| **Stat**    | **Starting Value** | **Drops When**                                                                                                                                     | **Restores When**                                                                                                                     |
-| ----------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| **Health**  | 100                |Fear damage: small random hits (2–5 Health) every 30–60 seconds (see 3.4); Screamer encounter (−25)                                                 | Eating food (+20); solving a puzzle (+10)
-| ---         | ---                | ---                                                                                                                                                | ---                                                                                                                                   |
-| **Stamina** | 100                | Continuous running: empties the bar in 4–7 seconds (15%–25% of the bar per second); each jump: 20% of the bar (a jump is possible only if at least 20% is available); pushing heavy objects | Whenever the player is not running or jumping. Regeneration starts 1 second after landing from a jump. Standing still: full refill in about 10 seconds. Walking: slower, full refill in about 20 seconds. |
-| ---         | ---                | ---                                                                                                                                                | ---                                                                                                                                   |
+| **Stat**    | **Starting Value** | **Drops When** | **Restores When** |
+| ----------- | ------------------ | -------------- | ----------------- |
+| **Health**  | 100 | Fear damage: small random hits (2–5 Health) every 30–60 seconds (see 3.4); Screamer encounter (−25) | Eating food (+20); solving a puzzle (+10) |
+| **Stamina** | 100 | Continuous running: empties the bar in 4–7 seconds (15%–25% of the bar per second); each jump: 20% of the bar (a jump is possible only if at least 20% is available); pushing heavy objects | Whenever the player is not running or jumping. Regeneration starts 1 second after the player stops running or lands from a jump. Standing still: full refill in about 10 seconds. Walking: slower, full refill in about 20 seconds. |                                                                                                                                |
 
 ### 3.4 Fear Damage
-- Rule: Fear damage starts when the player enters the Kitchen and continues until the end of the game. There is no fear damage in the Entry Hall. While it is active, the player loses a small, random amount of Health at random intervals (for example, for example, −4 after 35 seconds, then −2 after 52 seconds). It represents the fear and pressure of the house.
+- Rule: Fear damage starts when the player enters the Kitchen and continues until the end of the game. There is no fear damage in the Entry Hall. While it is active, the player loses a small, random amount of Health at random intervals (for example, −4 after 35 seconds, then −2 after 52 seconds). It represents the fear and pressure of the house.
 - Pause: Fear damage stops while the journal or the pages viewer is open. The game is paused, but the audio keeps playing.
 - Feedback: Each time Health drops, red blotches appear across the whole screen and fade out, in the style of The Evil Within and Amnesia. The Screamer’s permanent red blotches (Section 7.1) use the same visual language.
--Tuning: Tuning: Starting values are 2–5 Health per hit, one hit every 30–60 seconds. They are balanced for about 20 minutes of fear time with 3 food portions (+20 each), and will be adjusted during playtesting. Falling damage no longer exists.
+-Tuning: Starting values are 2–5 Health per hit, one hit every 30–60 seconds. They are balanced for about 20 minutes of fear time with 3 food portions (+20 each), and will be adjusted during playtesting. Falling damage no longer exists.
 
 ## 4\. World & Level Design
 
@@ -122,12 +120,14 @@ An abandoned house, isolated and in unnaturally good condition for how long it a
 - **Atmosphere:** Calm, ordinary, almost cozy — deliberately free of horror cues.
 - **Danger:** None. There is no fear damage in this room. It starts when the player enters the Kitchen.
 - **Content:** The player spawns here and finds **Note #1** on a table. Two lit torches mark the door to the Kitchen.
+- **Jump zone:** One low obstacle (about 0.5 m high) blocks the path. The player must jump over it. The room is safe, so the player learns jumping with no pressure.
 - **Design intent:** By the time the player leaves this room, they should feel safe and slightly relieved — a feeling the rest of the game will slowly dismantle.
 
 #### Room 2 — Kitchen
 
 - **Atmosphere:** Dim daylight filtering through a grimy window; a faint smell of rot implied through visual and audio cues (never shown directly).
 - **Puzzle — The Hidden Code:** A 3-digit code is scattered across three separate hiding spots in the room:
+- **Jump zone:** One low obstacle (a fallen chair or a broken shelf) blocks the way to the padlock. The player must jump over it while fear damage is active.
 
   1. The **first digit** is inside the wall-mounted cabinet.
   2. The **second digit** is behind the wall clock — the player must lift the clock off its hook to reveal a hole in the wall behind it, then may either discard the clock or hang it back up.
@@ -155,8 +155,8 @@ An abandoned house, isolated and in unnaturally good condition for how long it a
   2. Once the matches are found, a **candle** on the desk becomes noticeable the same way — it also catches a faint highlight the player learns to look for.
   3. Lighting the candle reveals enough of the room to find a wall torch, which the player then lights, fully illuminating the Bedroom.
 - **Reward:** With the room lit, the player finds **Key #3** hidden under the mattress.
-- **Final Note (#4):** Appears on the door once the candle is lit. It is the most emotionally direct note in the game (full text in [Section 18](#lc66ly758bly)) and ends with an explicit warning not to take the key that lies behind the final door — because if the player takes it, "it follows you out."
-- **The Ending:** After the player reads Note #4, an unsettling ambient cue begins. Key #3 unlocks the final door. The player opens it by about 35 degrees. Beyond it there is only white, held for 3–5 seconds. Then the camera turns 180 degrees, and the player looks back at the Bedroom, which is now in complete disarray. Within 10 seconds, the screen fades to black and the credits appear.
+- **Final Note (#4):** Appears on the door once the candle is lit. It is the most emotionally direct note in the game (full text in [Section 18](#lc66ly758bly)) and ends with a direct message: the door is the only way out, do not wait, because if you stay still it never leaves you.
+- **The Ending:** After the player reads Note #4, an unsettling ambient cue begins. Key #3 unlocks the final door. The player opens it by about 35 degrees. Beyond it there is only white, held for 3–5 seconds. Then the camera turns 180 degrees, and the player looks back at the Bedroom, which is now in complete disarray. Within 10 seconds, the screen fades to black and after the credits, an end menu appears with two buttons: return to the menu or exit to the desktop.
 
 There is no second key and no choice. Opening the door is the step itself: to face fear, paranoia, and the voices in his head, the player must leave isolation, even when it hurts. One small step changes everything (the butterfly effect). The player’s past (the Screamer) leaves the house together with them. If the game is well received, the story continues from this point; otherwise this is the final ending.
 
@@ -224,7 +224,7 @@ The Screamer's single scripted appearance is triggered when the player pushes th
 
 ### 8.2 Win Condition
 
-The player reaches the Bedroom, finds Key #3, and reads the final note. The player opens the final door by about 35 degrees. Only white is visible for 3–5 seconds. Then the camera turns 180 degrees to show the Bedroom in complete disarray. Within 10 seconds, the screen fades to black and the credits appear.
+The player reaches the Bedroom, finds Key #3, and reads the final note. The player opens the final door by about 35 degrees. Only white is visible for 3–5 seconds. Then the camera turns 180 degrees to show the Bedroom in complete disarray. Within 10 seconds, the screen fades to black and After the credits, an end menu appears with two buttons: return to the menu or exit to the desktop.
 
 ### 8.3 Lose Condition
 
@@ -238,6 +238,7 @@ If the player's Health reaches 0, the game restarts from the last checkpoint —
 - **Radial menu:** A BioShock-style radial menu is used to eat food. The player opens it with a dedicated key (key not chosen yet), selects Food, and then chooses how many portions to eat using a visual stack (layered UI), where the portions are shown stacked on top of each other.
 - **Pages viewer:** A crumpled sheet of paper appears in the center of the screen. To help the player read the difficult handwriting, a text with a blurred background will be placed over it; closes with Escape.
 - **Damage feedback:** Red blotches flash across the whole screen each time the player loses Health (see 3.4).
+- **End menu:** After the credits: the main menu, as at the start of the game, but now New game is enabled rather than grayed out or Quit.
 
 ## 10\. Art Direction
 
@@ -265,11 +266,11 @@ If the player's Health reaches 0, the game restarts from the last checkpoint —
 - ❌ Multiplayer
 - ❌ Hunger or warmth survival stats
 - ❌ More than 4 rooms
-- ❌ Cutscenes longer than 15 seconds
+- ❌ Cutscenes longer than 15 seconds (exception: the ending, up to 20 seconds)
 
 ## 13\. Ideas for v2
 
-- A short epilogue room or alternate ending reflecting the consequence of taking (or refusing) the key
+- A short epilogue room or alternate ending reflecting the consequence of opening the door (or staying still)
 - A continuation of the story that starts at the moment the final door opens, if the game is well received
 - Additional environmental notes for players who want deeper optional lore, without extending the critical path
 
@@ -393,9 +394,9 @@ I spent years drowning myself out — background noise, tasks, other people's pr
 
 Turns out silence doesn't heal you. It just waits until there's nothing left to hide behind.
 
-The key is behind that door. Don't take it.
+The door is the only way out. Don't wait.
 
-If you take it, it follows you out.
+If you stay still, it never leaves you.
 
 ## 19\. Pacing & Emotional Arc
 

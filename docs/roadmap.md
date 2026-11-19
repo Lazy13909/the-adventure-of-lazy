@@ -22,7 +22,7 @@ Size is a rough guess at about 4 hours per day: S = 2-3 days, M = about 1 week, 
 | # | Milestone | Size | Status |
 |---|---|---|---|
 | M0 | Foundation | S | [x] |
-| M1 | Player systems | M | [x] |
+| M1 | Player systems | M | [~] |
 | M2 | Interaction, notes, journal | M | [ ] |
 | M3 | Food and radial menu | M | [ ] |
 | M4 | Doors, keys, torches | M | [ ] |
@@ -47,7 +47,7 @@ Size is a rough guess at about 4 hours per day: S = 2-3 days, M = about 1 week, 
 
 ---
 
-## M1: Player systems `[x]`
+## M1: Player systems `[~]`
 
 **Goal:** the player moves, gets tired, and gets scared, as in GDD Section 3.
 **Depends on:** M0.
@@ -62,6 +62,7 @@ Size is a rough guess at about 4 hours per day: S = 2-3 days, M = about 1 week, 
 - `[x]` **M1.1 Jump zones.** Done 13.11.2026.
 - `[x]` **M1.2 Crouch camera.** Done 17.11.2026. While crouching, the camera pivot goes lower and the camera can look under furniture.
 - `[x]` **M1.3 Cleanup.** Done 15.11.2026 (helpers, tabs, folder names).
+- `[ ]` **M1.4 Stamina delay after running.** After the player stops running, stamina regen waits 1 second, like after a jump.
 
 **Done when**
 - Space does nothing outside a zone. Inside a zone it makes a jump and costs 20% Stamina. (done)
@@ -140,15 +141,15 @@ Size is a rough guess at about 4 hours per day: S = 2-3 days, M = about 1 week, 
 **Depends on:** M2, M3, M4.
 
 **Tasks**
-- `[ ]` **M5.1 Entry Hall.** Player spawn, Note #1 on a table, one food, two lit torches at the Kitchen door. No fear damage.
-- `[ ]` **M5.2 Kitchen.** Window light, props, one food. Move `KitchenFearTrigger` into `kitchen.tscn`.
+- `[ ]` **M5.1 Entry Hall.** Player spawn, Note #1 on a table, one food, two lit torches at the Kitchen door. No fear damage. A one-time Space hint, like the food prompt.
+- `[ ]` **M5.2 Kitchen.** Window light, props, one food. Move `KitchenFearTrigger` into `kitchen.tscn`. One low obstacle (fallen chair) on the way to the padlock, with a jump zone.
 - `[ ]` **M5.3 Code puzzle.** Three digits: in the wall cabinet, behind the wall clock (lift the clock to see a hole in the wall; discard it or hang it back), and on the refrigerator. Digits are upside-down and out of order. Padlock UI for a 3-digit code.
-- `[ ]` **M5.4 Key #1** opens the corridor door (lit torch) toward the Living Room.
+- `[ ]` **M5.4 Key #1** opens the corridor door (lit torch) toward the Living Room. Solving the padlock gives +10 Health. 
 - `[ ]` **M5.5 Level structure.** Each room is its own scene in `levels/`, and the Main scene loads them.
 
-**Done when:** start in the Entry Hall, read the note, enter the Kitchen (fear damage starts once), find three digits, solve the padlock, and Key #1 opens the door.
+**Done when:** start in the Entry Hall, read the note, enter the Kitchen (fear damage starts once), find three digits, solve the padlock, and Key #1 opens the door. The player jumps over the obstacle in both rooms.
 
-**Risks:** how to show upside-down digits; too much time on room decoration (greybox is enough here).
+**Risks:** how to show upside-down digits; too much time on room decoration (greybox is enough here). Obstacle height at most 0.5 m; it must block the whole path.
 **Concepts:** scene composition, Label3D or textures, UI for the padlock, scene loading.
 **GDD:** 4.3 (Rooms 1 and 2), 6.
 
@@ -186,15 +187,15 @@ Size is a rough guess at about 4 hours per day: S = 2-3 days, M = about 1 week, 
 
 **Tasks**
 - `[ ]` **M7.1 Dark Bedroom.** No torches lit. Matches on the nightstand (faint glint). After finding the matches, the candle on the desk gets a glint. Light the candle (E, needs matches). That shows the room enough to find a wall torch. Light it, and the room is fully lit.
-- `[ ]` **M7.2 Note #4** appears on the door when the candle is lit. **Key #3** is under the mattress.
-- `[ ]` **M7.3 Ending sequence.**
+- `[ ]` **M7.2** When the player finds **note #3** under the bed, the final **note #4** appears on the door, and after the door-opening scene, the credits appear.
+- `[ ]` **M7.3 Ending sequence. Total length at most 20 s.**
   1. After reading Note #4, an unsettling ambient cue starts.
   2. Key #3 unlocks the final door, which opens about 35 degrees.
   3. Only white for 3-5 seconds.
   4. The camera turns 180 degrees and shows the Bedroom in complete disarray.
   5. Within 10 seconds, fade to black, then the credits.
   6. Call `stop_fear_damage()`.
-- `[ ]` **M7.4 Credits scene** (simple text).
+- `[ ]` **M7.4 Credits scene** (simple text). For now, IDK what to add
 
 **Done when:** the whole path, from entering the Bedroom to the credits, works.
 
@@ -212,7 +213,7 @@ Size is a rough guess at about 4 hours per day: S = 2-3 days, M = about 1 week, 
 **Tasks**
 - `[ ]` **M8.1 Checkpoint save.** Save automatically when the player finds a room's key and passes through its exit. A simple local file.
 - `[ ]` **M8.2 Resume.** If the player quits before finding the key, the next session starts at the beginning of that room.
-- `[ ]` **M8.3 Lose condition.** Health 0 restarts from the last checkpoint. All collected items stay. Fear damage restarts correctly.
+- `[ ]` **M8.3 Lose condition.** Health 0 restarts from the last checkpoint. All collected items stay. Fear damage restarts correctly. Play again from the end menu = full wipe, like a brand‑new game.
 - `[ ]` **M8.4 Real flow.** Replace the greybox Main scene with Entry Hall, Kitchen, Living Room, Bedroom, credits. Linear, no backtracking.
 - `[ ]` **M8.5 Full playtest** from start to finish (target 20-35 minutes). Recruit 2-3 external testers.
 
@@ -272,13 +273,10 @@ Combat, multiple enemy types, voice acting, branching story, mid-room saves, phy
 
 ## Open questions
 
-1. **Jump zones:** GDD 3.1 requires them, but Section 4.3 has no jump obstacle. Plan: build the mechanic with a test zone in M1.1, decide the real places in M5-M7.
-2. **Puzzle healing +10 Health** (GDD 3.3): suggested, not confirmed.
-3. **Cutscene length:** GDD Section 12 says no cutscenes longer than 15 seconds. An earlier note said 5 seconds. The ending may take about 15-20 seconds. Which number is right?
-4. **Note #4** says "The key is behind that door", but there is no second key now. Reword it, or keep it as a metaphor?
-5. **After the credits:** quit the game, or go back to a menu?
-6. **Main menu / pause menu:** not in the GDD. Decide in M8.
-7. **GDD text** for Sections 3.3, 3.4, 4.3, 8.2 and 12: confirm the updated version is pasted into the GDD.
+1. Main menu / pause menu: decide in M8.
+2. After the final door: does the Screamer still follow the player? (sequel hook)
+3. Which puzzles give +10 Health? Decide in M5.
+4. Confirm the changes above are pasted into the GDD.
 
 ## Ideas for later
 
