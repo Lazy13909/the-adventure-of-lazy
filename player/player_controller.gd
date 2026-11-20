@@ -49,6 +49,7 @@ const SKIN_TURN_SPEED: float = 6.0
 @export var regen_standing_per_second: float = 10.0
 @export var regen_walking_per_second: float = 5.0
 @export var regen_delay_after_jump: float = 1.0
+@export var regen_delay_after_run: float = 1.0
 @export var min_stamina_to_run: float = 25.0
 
 var stamina: float = 100.0:
@@ -107,6 +108,7 @@ func drain_stamina(amount: float) -> void:
 
 func update_stamina(delta: float) -> void:
 	if state_machine.current_state is PlayerRunningState:
+		_regen_delay_left = regen_delay_after_run
 		return
 	if state_machine.current_state is PlayerJumpState:
 		return
