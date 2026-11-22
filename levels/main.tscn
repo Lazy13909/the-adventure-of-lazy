@@ -47,6 +47,12 @@ size = Vector3(0.2, 0.2, 0.2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_0n2ll"]
 size = Vector3(0.2, 0.2, 0.2)
 
+[sub_resource type="BoxMesh" id="BoxMesh_71frx"]
+size = Vector3(0.41, 0.1, 0.285)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_buxgw"]
+size = Vector3(0.41, 0.1, 0.285)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_71frx"]
 size = Vector3(0.11566162, 3.036255, 1.9863281)
 
@@ -108,14 +114,24 @@ mesh = SubResource("BoxMesh_rqkgj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/bed" unique_id=66445822]
 shape = SubResource("BoxShape3D_ifaiv")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Level" unique_id=1025466368]
+[node name="wrongObject" type="StaticBody3D" parent="Level" unique_id=1025466368]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2725408, 0.20867908, 1.9394081)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/StaticBody3D" unique_id=486219362]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/wrongObject" unique_id=486219362]
 mesh = SubResource("BoxMesh_afj1d")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/StaticBody3D" unique_id=542005263]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/wrongObject" unique_id=542005263]
 shape = SubResource("BoxShape3D_0n2ll")
+
+[node name="note" type="StaticBody3D" parent="Level" unique_id=1465187889 groups=["interactable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3195271, 0.19044524, 1.8587625)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/note" unique_id=1686787675]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.030343533, 0)
+mesh = SubResource("BoxMesh_71frx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/note" unique_id=591729586]
+shape = SubResource("BoxShape3D_buxgw")
 
 [node name="HUD" parent="." unique_id=1990551773 node_paths=PackedStringArray("player") instance=ExtResource("2_l8qe7")]
 player = NodePath("../Player")

@@ -20,7 +20,7 @@ var health: float = 100.0:
 @onready var skin = $Erika
 @onready var animation_player = $Erika/AnimationPlayer
 
-@onready var camera: Camera3D = $CameraController/Camera3D
+@onready var camera: Camera3D = $CameraController/CameraRig/Camera3D
 
 var movement_input: Vector2 = Vector2.ZERO
 var vel_2d: Vector2 = Vector2.ZERO

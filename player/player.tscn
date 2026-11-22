@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://bv8b5gehe1whu" path="res://player/fear_damage/fear_damage.gd" id="5_qjkh3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p7gav"]
-radius = 0.4
 height = 1.8
 
 [node name="Player" type="CharacterBody3D" unique_id=2020998403]

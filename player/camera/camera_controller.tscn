@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://csf66fgrbv8ef"]
 
 [ext_resource type="Script" uid="uid://bxgr01ywpmant" path="res://player/camera/camera_controller.gd" id="1_vt637"]
+[ext_resource type="Script" uid="uid://ct5dpcbposxla" path="res://player/interaction/interaction_detector.gd" id="2_oxuq3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_58kc7"]
 radius = 0.1
@@ -9,4 +10,11 @@ radius = 0.1
 shape = SubResource("SphereShape3D_58kc7")
 script = ExtResource("1_vt637")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1281787443]
+[node name="CameraRig" type="Node3D" parent="." unique_id=928022027]
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig" unique_id=1281787443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="CameraRig/Camera3D" unique_id=300848246]
+target_position = Vector3(0, 0, -3)
+script = ExtResource("2_oxuq3")
