@@ -16,5 +16,5 @@ script = ExtResource("1_vt637")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="CameraRig/Camera3D" unique_id=300848246]
-target_position = Vector3(0, 0, -3)
+target_position = Vector3(0, 0, -2.2)
 script = ExtResource("2_oxuq3")

@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bv8b5gehe1whu" path="res://player/fear_damage/fear_damage.gd" id="5_qjkh3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p7gav"]
+radius = 0.3
 height = 1.8
 
 [node name="Player" type="CharacterBody3D" unique_id=2020998403]
@@ -185,7 +186,7 @@ bones/66/position = Vector3(-1.7470235e-10, 0.09272497, 8.441762e-11)
 bones/66/rotation = Quaternion(5.421011e-20, 3.134022e-20, -4.3368087e-19, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1455692005]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.92487466, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_p7gav")
 
 [node name="CameraController" parent="." unique_id=89015395 node_paths=PackedStringArray("player") instance=ExtResource("3_58kc7")]

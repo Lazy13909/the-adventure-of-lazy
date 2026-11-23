@@ -1,10 +1,11 @@
-extends RayCast3D
+class_name InteractionDetector extends RayCast3D
 
 signal target_changed(target: Node3D)
 
 var current_target: Node3D = null
 
 func _ready() -> void:
+	add_to_group("interaction_detector")
 	add_exception(owner.player)
 
 func _physics_process(_delta: float) -> void:
@@ -18,4 +19,3 @@ func _physics_process(_delta: float) -> void:
 	if new_target != current_target:
 		current_target = new_target
 		target_changed.emit(current_target)
-		print("Target: ", current_target)
