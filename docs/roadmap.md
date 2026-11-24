@@ -22,7 +22,7 @@ Size is a rough guess at about 4 hours per day: S = 2-3 days, M = about 1 week, 
 |---|---|---|---|
 | M0 | Foundation | S | [x] |
 | M1 | Player systems | M | [x] |
-| M2 | Interaction, notes, journal | M | [ ] |
+| M2 | Interaction, notes, journal | M | [~] |
 | M3 | Food and radial menu | M | [ ] |
 | M4 | Doors, keys, torches | M | [ ] |
 | M5 | Entry Hall and Kitchen | L | [ ] |
@@ -73,13 +73,13 @@ Size is a rough guess at about 4 hours per day: S = 2-3 days, M = about 1 week, 
  
 ---
  
-## M2: Interaction, notes, journal `[ ]`
+## M2: Interaction, notes, journal `[~]`
  
 **Goal:** the player can look at an object, press E, and read a note.
 **Depends on:** M1.
  
 **Tasks**
-- `[ ]` **M2.1 Interaction detection and "E" prompt.** Compare RayCast3D and Area3D in front of the player, then choose one.
+- `[x]` **M2.1 Interaction detection and "E" prompt.** Done 24.11.2026. RayCast3D chosen (it matches what the player looks at; Area3D could pick the wrong object in the Kitchen). Ray, "E" prompt and target highlight all work.
 - `[ ]` **M2.2 Base interactable.** One shared script or scene with an `interact()` function, in `interactables/`.
 - `[ ]` **M2.3 Note pickup.** Note data (id, title, text). Collected notes are stored in `game_state.gd` (autoload).
 - `[ ]` **M2.4 Pages viewer.** Crumpled paper in the center, readable text on a blurred background, closes with Escape.
@@ -268,6 +268,9 @@ Combat, multiple enemy types, voice acting, branching story, mid-room saves, phy
 4. Confirm the changes above are pasted into the GDD.
 5. M7.2 says "note #3 under the bed". GDD says Note #3 is in the Living Room, Key #3 is under the mattress, and Note #4 appears on the door after the candle is lit. Fix M7.2 before M7.
 ## Ideas for later
- 
-(empty: write new ideas here, not into the current milestone)
+
+(write new ideas here, not into the current milestone)
+
+- Fade the character when the camera is very close to objects (only if the shoulder camera is not enough).
+- Camera can go into a wall on the right side (shoulder offset). Check in M5 when the real rooms exist.
  

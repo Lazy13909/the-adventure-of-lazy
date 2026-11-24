@@ -1,5 +1,5 @@
 # Game Dev Progress
-Updated: 20.11.2026
+Updated: 24.11.2026
  
 ## Setup
  
@@ -17,7 +17,7 @@ Updated: 20.11.2026
 |---|---|---|
 | M0 | Foundation | done |
 | M1 | Player systems | done (20.11.2026) |
-| M2 | Interaction, notes, journal | todo (next) |
+| M2 | Interaction, notes, journal | in progress (M2.1 done 24.11.2026) |
 | M3 | Food and radial menu | todo |
 | M4 | Doors, keys, torches | todo |
 | M5 | Entry Hall and Kitchen | todo |
@@ -29,7 +29,7 @@ Updated: 20.11.2026
  
 ## Current milestone
  
-M2: Interaction, notes, journal. Start with M2.1.
+M2: Interaction, notes, journal. M2.1 is done. Next is M2.2.
  
 ## Done
  
@@ -62,12 +62,35 @@ M2: Interaction, notes, journal. Start with M2.1.
   - In update_stamina(), while the state is PlayerRunningState, the code sets
     _regen_delay_left = regen_delay_after_run every frame, then returns.
     When running stops, the timer counts down from 1.0, then regen starts.
-  - Works for every way of leaving Running (Shift released, stamina 0,
-    stopped moving, crouch). No change in player_running_state.gd.
 - M1 is complete.
+- M2.1 interaction detection and prompt (24.11.2026, tested, no errors):
+  - RayCast3D chosen over Area3D (it follows what the player looks at).
+  - Camera tree is now:
+    CameraController (SpringArm3D, root of camera_controller.tscn)
+    └── CameraRig (Node3D)
+        └── Camera3D (position X = 0.5, shoulder camera)
+            └── RayCast3D (interaction_detector.gd, Target Position Z = -2.2,
+                tune in playtests)
+                └── TargetHighlighter (Node, target_highlighter.gd)
+  - CameraRig exists because SpringArm3D moves its DIRECT children and
+    overwrites their position. The shoulder offset must live below the rig.
+  - interaction_detector.gd (player/interaction/): class_name
+    InteractionDetector. Ray ignores the player body with
+    add_exception(owner.player). Only objects in group "interactable"
+    count. Signal target_changed(target: Node3D), emitted only when the
+    target changes. The node adds itself to group "interaction_detector"
+    in _ready().
+  - ui/interaction_prompt/: CanvasLayer with a Label "[E]". It finds the
+    detector by group (after await get_tree().process_frame) and shows or
+    hides the label on target_changed. Instanced in Main.
+  - target_highlighter.gd: on target_changed it sets material_overlay
+    (player/interaction/highlight_material.tres, unshaded, yellow, alpha
+    about 0.25) on every MeshInstance3D inside the target, and clears it
+    when the target changes.
+  - Pressing E does nothing yet. interact() comes in M2.2.
 ## In progress
  
-- Nothing. Next is M2.1.
+- Nothing. Next is M2.2.
 ## Known bugs
  
 - StateMachine is_log_enabled is on (turn off in M10).
@@ -75,6 +98,11 @@ M2: Interaction, notes, journal. Start with M2.1.
 - Cannot jump while running (must release Shift first). Fine for now.
 - Future risk: min_stamina_to_run (25) exists in PlayerController, but the
   Running state only checks stamina <= 0. Check the feel in playtests.
+- Future risk: with the shoulder camera (X = 0.5), the camera can go into
+  a wall on the right side. SpringArm3D only checks space behind the player.
+  Check in M5 in the real rooms.
+- Future risk: ray reach gets a bit longer when the spring arm is short
+  (near a wall behind the player). Fine for now.
 ## Technical decisions
  
 - Slower running at low stamina: rejected. GDD unchanged.
@@ -102,7 +130,16 @@ M2: Interaction, notes, journal. Start with M2.1.
 - Folder rule: put a file next to the thing it belongs to.
 - Jump zones: JumpZone lives in levels/jump_zone/ (not interactables/, because
   the player does not press E). Counter, not true/false, so overlapping zones work. one in the Entry Hall (tutorial), one in the Kitchen (fallen chair). Obstacles at most 0.5 m high.
-- interactables/ is for objects with E. First files come in M2.
+- interactables/ is for objects with E. First files come in M2.2.
+- Interaction code lives in player/interaction/ (detector, highlighter,
+  highlight material). The prompt UI lives in ui/interaction_prompt/.
+- Interaction: detector does not know about the UI or the highlight. They
+  listen to its signal target_changed (one job per part).
+- Interactable objects are found by group "interactable". M2.2: the base
+  interactable scene will have this group already set.
+- Highlight uses material_overlay, so the original material is never changed.
+- Detector stays a node inside camera_controller.tscn (not a separate scene):
+  it is used once. Reason: owner.player works only there.
 - Rename files only in the Godot FileSystem dock. On Windows, rename
   Name -> name_tmp -> name (case-only rename trick).
 - Puzzle healing +10 Health: confirmed.
@@ -122,14 +159,20 @@ M2: Interaction, notes, journal. Start with M2.1.
   clamp, signals, @onready, $Node, Tween, remap, material vs shader,
   Area3D body_entered/body_exited, counter vs flag, helper functions,
   limit_length (speed cap), pivot and sin() for camera height, connecting
-  a signal in code, @export node reference, a timer that is reset every frame.
+  a signal in code, @export node reference, a timer that is reset every frame,
+  RayCast3D (target_position, is_colliding, get_collider, add_exception),
+  groups, class_name, owner, SpringArm3D moves direct children,
+  CanvasLayer, find_children, material_overlay, is_instance_valid.
 - Practice: change one shader number at a time and predict the result;
   debug a shader by showing a variable as gray.
-  Open check question: what does Vector2(1, 0).angle() return?
+- Open check questions (not answered yet):
+  1. What does Vector2(1, 0).angle() return?
+  2. Why is the ray 3 m (now 2.2 m) when the player reaches only about 2 m?
+  3. Why do we wait one frame (await get_tree().process_frame) in the prompt?
 - Learning style: small interactive visuals and numeric examples help. If "I don't understand",
   give the big picture first (what and why), then ask which part is unclear.
 ## Next task
  
-M2.1: interaction detection and the "E" prompt. Compare RayCast3D and Area3D
-in front of the player, then choose one.
- 
+M2.2: base interactable. One shared scene or script with an interact()
+function, in interactables/, with the group "interactable" already set.
+Then E calls interact() on the current target.
