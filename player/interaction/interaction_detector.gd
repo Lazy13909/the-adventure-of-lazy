@@ -19,3 +19,8 @@ func _physics_process(_delta: float) -> void:
 	if new_target != current_target:
 		current_target = new_target
 		target_changed.emit(current_target)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		if current_target is Interactable:
+			current_target.interact()

@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cxv60e4ag8yvo" path="res://ui/damage_overlay/damage_overlay.tscn" id="3_m1504"]
 [ext_resource type="PackedScene" uid="uid://pf56cwttk1eq" path="res://levels/jump_zone/jump_zone.tscn" id="5_ifaiv"]
 [ext_resource type="PackedScene" uid="uid://b3krbao4h5qqe" path="res://ui/interaction_prompt/interaction_prompt.tscn" id="6_5k4jt"]
+[ext_resource type="PackedScene" uid="uid://bppbh0w4bc3b7" path="res://interactables/test_box.tscn" id="7_qy63d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_72ix8"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -151,3 +152,6 @@ shape = SubResource("BoxShape3D_71frx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.2, 0)
 
 [node name="InteractionPrompt" parent="." unique_id=965528038 instance=ExtResource("6_5k4jt")]
+
+[node name="testBox" parent="." unique_id=1411217323 instance=ExtResource("7_qy63d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.019242, 0.36477852, 0)
